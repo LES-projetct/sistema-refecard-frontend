@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # sistema-refecard-frontend
 Sistema de Controle de Acesso e Pagamento de Refeitório
 =======
@@ -74,5 +73,3 @@ export default defineConfig([
     },
   },
 ])
-```
->>>>>>> 0064016 (Inicializando..)
