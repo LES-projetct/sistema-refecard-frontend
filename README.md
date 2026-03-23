@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# sistema-refecard-frontend
-Sistema de Controle de Acesso e Pagamento de Refeitório
-=======
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -74,5 +70,3 @@ export default defineConfig([
     },
   },
 ])
-```
->>>>>>> 0064016 (Inicializando..)
