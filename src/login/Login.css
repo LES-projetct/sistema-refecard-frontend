@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Kreon:wght@400;600;700&family=Lalezar&display=swap');
+
+/* título grande */
+.login-title{
+  font-family: "Lalezar", cursive;
+  font-size:64px;
+}
+
+/* título do sistema */
+.header h1{
+  font-family: "Kreon", serif;
+  font-size:36px;
+  font-weight:600;
+}
+
+/* labels */
+.form-row label{
+  font-family: "Kreon", serif;
+  font-size:26px;
+  font-weight:700;
+}
+
+/* botão */
+.login-button{
+  font-family: "Lalezar", cursive;
+  font-size:22px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  font-family: Georgia, serif;
+}
+
+body{
+  background:#4fc3d4;
+  justify-content:center;
+  align-items:center;
+}
+
+/* container geral da tela */
+.page{
+  width: 100%;       
+  overflow:hidden;
+}
+
+/* topo azul */
+.header{
+  padding:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:80px;
+}
+
+.header img{
+  width:150px;  
+  object-fit:contain;
+}
+
+.header h1{
+  font-size:36px;
+  font-weight:600;
+  text-align:center;
+}
+
+/* container geral da tela */
+.page{
+  width: 100%;   
+  height:100vh;     
+  overflow:hidden;
+}
+
+/* painel login */
+.login-container{
+    background:#ffffff; 
+    border-radius:70px;    
+    text-align:center;
+    width:100%; 
+    height: 100%;    
+}
+
+/* titulo */
+.login-title{
+  font-size:64px;
+  font-weight:900;
+  margin-bottom:100px;
+}
+
+/* linhas do formulário */
+.form-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  margin-bottom:45px;
+}
+
+.form-row label{
+  font-size:28px;
+  font-weight:800;
+  width:170px;
+  text-align:right;
+}
+
+/* campos */
+.form-row input{
+  width:420px;
+  padding:16px 22px;
+  border-radius:40px;
+  border:2px solid black;
+  background:#d9d9d9;
+  font-size:16px;
+  box-shadow:0 4px 6px rgba(0,0,0,0.35);
+}
+
+/* botão */
+.login-button{
+  margin-top:40px;
+  padding:16px 60px;
+  font-size:22px;
+  font-weight:800;
+  border-radius:40px;
+  border:2px solid black;
+  background:#73f2b2;
+  cursor:pointer;
+  box-shadow:0 4px 6px rgba(0,0,0,0.3);
+}
+
+.login-button:hover{
+  background:#5be3a3;
+}
+
