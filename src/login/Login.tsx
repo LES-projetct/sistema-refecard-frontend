@@ -1,7 +1,7 @@
 import "./Login.css";
 import logo from "../assets/logo.png";
 import { useState } from "react";
-import { usuarioService } from "../services/UsuarioService";
+import { usuarioService } from "../services/usuarioService";
 
 function Login() {
 
