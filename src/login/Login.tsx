@@ -1,7 +1,28 @@
 import "./Login.css";
 import logo from "../assets/logo.png";
+import { useState } from "react";
+import { usuarioService } from "../services/UsuarioService";
 
 function Login() {
+
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+
+    const handleLogin = async () => {
+        try {
+            const usuario = await usuarioService.login(email, senha);
+
+            console.log("Usuário logado:", usuario);
+
+            alert("Login realizado com sucesso!");
+
+
+        } catch (error) {
+            console.error(error);
+            alert("Email ou senha inválidos");
+        }
+    };
+
     return (
         <div className="page">
 
@@ -19,26 +40,26 @@ function Login() {
                 <h2 className="login-title">ENTRAR</h2>
 
                 <div className="form-row">
-                    <label htmlFor="usuario">Usuário</label>
+                    <label>Usuário</label>
                     <input
-                        id="usuario"
-                        name="usuario"
                         type="text"
-                        placeholder="Digite o usuário"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Digite o email"
                     />
                 </div>
 
                 <div className="form-row">
-                    <label htmlFor="senha">Senha</label>
+                    <label>Senha</label>
                     <input
-                        id="senha"
-                        name="senha"
                         type="password"
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
                         placeholder="Digite a senha"
                     />
                 </div>
 
-                <button className="login-button">
+                <button className="login-button" onClick={handleLogin}>
                     LOGIN
                 </button>
 
