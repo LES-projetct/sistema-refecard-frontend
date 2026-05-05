@@ -1,0 +1,30 @@
+.gridDre {
+  display: grid;
+  grid-template-columns: repeat(2, 300px);
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.cardDre {
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 30px;
+  padding: 20px;
+  text-align: center;
+}
+
+.cardDre span {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.cardDre strong {
+  font-size: 28px;
+  color: red;
+}
+
+.cardDre.full {
+  grid-column: span 2;
+}

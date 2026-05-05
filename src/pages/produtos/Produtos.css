@@ -1,0 +1,51 @@
+/* busca */
+.barraBusca {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.inputBusca {
+  width: 1455px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* tabela */
+.tabelaProdutos {
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.headerTabela,
+.linhaProduto {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 12px;
+  align-items: center;
+}
+
+.headerTabela {
+  background: #f0f0f0;
+  font-weight: bold;
+}
+
+.linhaProduto {
+  border-top: 1px solid #eee;
+}
+
+.linhaProduto:hover {
+  background: #f9f9f9;
+}
+
+/* ações */
+.acoesTabela {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}

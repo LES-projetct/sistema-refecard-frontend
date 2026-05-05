@@ -1,0 +1,56 @@
+.barraBusca {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.inputBusca {
+  width: 500px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.btnIcon {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabela {
+  width: 900px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.linha.header {
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+.linha span {
+  width: 25%;
+  text-align: center;
+}
+
+.btn.voltar {
+  display: block;
+  margin: 40px auto 0 auto;
+}
