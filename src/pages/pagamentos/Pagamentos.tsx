@@ -55,7 +55,7 @@ const Pagamento: FunctionComponent = () => {
       </header>
 
       <div className="container">
-        <div className="titulo">FORNECEDOR</div>
+        <div className="titulo">PAGAMENTO - FORNECEDOR</div>
 
         {/* busca */}
         <div className="barraBusca">

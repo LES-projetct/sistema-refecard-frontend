@@ -1,7 +1,7 @@
 .painelDeControle {
-	width: 100%;
+  width: 100%;
   min-height: 100vh;
-  background: #4addfa;  
+  background: #4addfa;
 }
 
 /* topo */
@@ -26,7 +26,7 @@
   max-width: 100%;
   height: 100vh;
   margin: 0 auto;
-} 
+}
 
 /* grid dos botões */
 .grid {
@@ -75,7 +75,7 @@
 .metricas {
   max-width: 500px;
   margin: 0 auto;
-  border: 2px solid rgba(0,0,0,0.4);
+  border: 2px solid rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   padding: 20px;
   display: flex;

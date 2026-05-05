@@ -2,7 +2,7 @@ import { type FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Usuarios.css";
 import logoCanto from "@assets/logo-canto.png";
-import { FaSearch, FaFilter } from "react-icons/fa";
+import { FaSearch, FaFilter, FaEdit, FaTrash } from "react-icons/fa";
 
 type Usuario = {
   id: number;
@@ -19,6 +19,8 @@ const Usuarios: FunctionComponent = () => {
   const [busca, setBusca] = useState("");
 
   const [abrirModal, setAbrirModal] = useState(false);
+  const [usuarioEditando, setUsuarioEditando] = useState<Usuario | null>(null);
+
   const [novoUsuario, setNovoUsuario] = useState({
     nome: "",
     matricula: "",
@@ -28,9 +30,9 @@ const Usuarios: FunctionComponent = () => {
 
   useEffect(() => {
     setUsuarios([
-      { id: 1, nome: "João Silva", matricula: "001", saldo: 120, status: "Ativo" },
-      { id: 2, nome: "Maria Souza", matricula: "002", saldo: 0, status: "Inativo" },
-      { id: 3, nome: "Carlos Lima", matricula: "003", saldo: 50, status: "Ativo" },
+      { id: 1, nome: "João", matricula: "001", saldo: 120, status: "Ativo" },
+      { id: 2, nome: "Maria", matricula: "002", saldo: 0, status: "Inativo" },
+      { id: 3, nome: "Carlos", matricula: "003", saldo: 50, status: "Ativo" },
     ]);
   }, []);
 
@@ -38,21 +40,55 @@ const Usuarios: FunctionComponent = () => {
     `${u.nome} ${u.matricula}`.toLowerCase().includes(busca.toLowerCase())
   );
 
+  const abrirEdicao = (usuario: Usuario) => {
+    setUsuarioEditando(usuario);
+    setNovoUsuario({
+      nome: usuario.nome,
+      matricula: usuario.matricula,
+      saldo: String(usuario.saldo),
+      status: usuario.status,
+    });
+    setAbrirModal(true);
+  };
+
+  const excluirUsuario = (id: number) => {
+    setUsuarios(usuarios.filter((u) => u.id !== id));
+  };
+
   const salvarUsuario = () => {
     if (!novoUsuario.nome || !novoUsuario.matricula) return;
 
-    setUsuarios([
-      ...usuarios,
-      {
-        id: Date.now(),
-        nome: novoUsuario.nome,
-        matricula: novoUsuario.matricula,
-        saldo: Number(novoUsuario.saldo),
-        status: novoUsuario.status,
-      },
-    ]);
+    if (usuarioEditando) {
+      // editar
+      setUsuarios(
+        usuarios.map((u) =>
+          u.id === usuarioEditando.id
+            ? {
+                ...u,
+                nome: novoUsuario.nome,
+                matricula: novoUsuario.matricula,
+                saldo: Number(novoUsuario.saldo),
+                status: novoUsuario.status,
+              }
+            : u
+        )
+      );
+    } else {
+      // novo
+      setUsuarios([
+        ...usuarios,
+        {
+          id: Date.now(),
+          nome: novoUsuario.nome,
+          matricula: novoUsuario.matricula,
+          saldo: Number(novoUsuario.saldo),
+          status: novoUsuario.status,
+        },
+      ]);
+    }
 
     setNovoUsuario({ nome: "", matricula: "", saldo: "", status: "Ativo" });
+    setUsuarioEditando(null);
     setAbrirModal(false);
   };
 
@@ -66,26 +102,26 @@ const Usuarios: FunctionComponent = () => {
       <div className="container">
         <div className="titulo">USUÁRIOS</div>
 
-        {/* busca */}
         <div className="barraBusca">
-          <input
-            className="inputBusca"
-            type="text"
-            placeholder="Pesquisar por nome ou matrícula..."
-            value={busca}
-            onChange={(e) => setBusca(e.target.value)}
-          />
+          <div className="barraBuscaConteudo">
+            <input
+              className="inputBusca"
+              type="text"
+              placeholder="Pesquisar..."
+              value={busca}
+              onChange={(e) => setBusca(e.target.value)}
+            />
 
-          <button className="btnIcon">
-            <FaFilter />
-          </button>
+            <button className="btnIcon">
+              <FaFilter />
+            </button>
 
-          <button className="btnIcon">
-            <FaSearch />
-          </button>
+            <button className="btnIcon">
+              <FaSearch />
+            </button>
+          </div>
         </div>
 
-        {/* tabela */}
         <div className="tabela">
           <div className="linha header">
             <span>NOME</span>
@@ -108,39 +144,42 @@ const Usuarios: FunctionComponent = () => {
               <span>{u.status}</span>
 
               <span className="acoes">
-                <button onClick={() => console.log("editar", u.id)}>
-                  Editar
+                <button onClick={() => abrirEdicao(u)}>
+                  <FaEdit />
                 </button>
-                <button onClick={() => console.log("excluir", u.id)}>
-                  Excluir
+
+                <button onClick={() => excluirUsuario(u.id)}>
+                  <FaTrash />
                 </button>
               </span>
             </div>
           ))}
         </div>
 
-        {/* botões */}
         <button className="btn voltar" onClick={() => navigate("/painel")}>
           VOLTAR
         </button>
 
-        <button
-          className="btn exportar"
-          onClick={() => console.log(usuarios)}
-        >
+        <button className="btn exportar" onClick={() => console.log(usuarios)}>
           EXPORTAR
         </button>
 
-        <button className="btn novo" onClick={() => setAbrirModal(true)}>
+        <button
+          className="btn novo"
+          onClick={() => {
+            setUsuarioEditando(null);
+            setNovoUsuario({ nome: "", matricula: "", saldo: "", status: "Ativo" });
+            setAbrirModal(true);
+          }}
+        >
           NOVO
         </button>
       </div>
 
-      {/* modal */}
       {abrirModal && (
         <div className="modalOverlay">
           <div className="modal">
-            <h2>Novo Usuário</h2>
+            <h2>{usuarioEditando ? "Editar Usuário" : "Novo Usuário"}</h2>
 
             <input
               placeholder="Nome"
@@ -179,9 +218,7 @@ const Usuarios: FunctionComponent = () => {
 
             <div className="modalActions">
               <button onClick={salvarUsuario}>SALVAR</button>
-              <button onClick={() => setAbrirModal(false)}>
-                CANCELAR
-              </button>
+              <button onClick={() => setAbrirModal(false)}>CANCELAR</button>
             </div>
           </div>
         </div>
